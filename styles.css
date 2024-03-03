@@ -1,0 +1,42 @@
+.spoiler {
+	position: relative;
+	padding: 0.8em;
+	border-radius: 4px;
+	padding-top: 3rem;
+	overflow: hidden;
+}
+
+.spoiler__cover {
+	padding: 1rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	backdrop-filter: blur(25px);
+	background-color: rgba(0, 0, 0, 0.5);
+	transition: opacity 0.5s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	user-select: none;
+	opacity: 1;
+}
+
+.spoiler__cover[data-visible] {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.spoiler-toolbar {
+	position: absolute;
+	left: 0.5rem;
+	top: 0.5rem;
+	z-index: 99;
+	display: flex;
+	gap: 0.5rem;
+}
+
+.spoiler-button {
+	cursor: pointer;
+}
