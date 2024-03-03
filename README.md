@@ -59,8 +59,8 @@ This is the second line`
 
 These are parsed using [dotenv](https://www.npmjs.com/package/dotenv) and are displayed in a table:
 
-![alt text](image.png)
+![alt text](images/env-1.png)
 
 Which allows you to copy individual keys and values
 
-![alt text](image-1.png)
+![alt text](images/env-2.png)
