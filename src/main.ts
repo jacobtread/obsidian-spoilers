@@ -1,8 +1,45 @@
-import { Plugin, MarkdownRenderer, ButtonComponent, Component } from "obsidian";
+import {
+	Plugin,
+	MarkdownRenderer,
+	ButtonComponent,
+	Component,
+	Editor,
+} from "obsidian";
 import { parse as parseEnv } from "dotenv";
 
 export default class Spoilers extends Plugin {
 	async onload() {
+		// Add spoiler creation commands
+		this.addCommand({
+			id: "spoiler-plain-text",
+			name: "Create spoiler - Plain Text",
+			editorCallback: (editor: Editor) => {
+				editor.replaceRange("```spoiler\n\n```", editor.getCursor());
+			},
+		});
+
+		this.addCommand({
+			id: "spoiler-markdown",
+			name: "Create spoiler - Markdown",
+			editorCallback: (editor: Editor) => {
+				editor.replaceRange(
+					"```spoiler-markdown\n\n```",
+					editor.getCursor()
+				);
+			},
+		});
+
+		this.addCommand({
+			id: "spoiler-env",
+			name: "Create spoiler - Env",
+			editorCallback: (editor: Editor) => {
+				editor.replaceRange(
+					"```spoiler-env\n\n```",
+					editor.getCursor()
+				);
+			},
+		});
+
 		const createSpoilerContainer = (el: HTMLElement, copyText: string) => {
 			// Container for the spoiler
 			const container = el.createEl("div", {
