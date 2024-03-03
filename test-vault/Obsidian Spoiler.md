@@ -21,3 +21,16 @@ Markdown works within the code block. However, you cannot use nested code blocks
 
 [github.com](https://github.com)
 ```
+
+
+### Env variables
+
+Store environment variables as table with `spoiler-env` parsed and evaluated by `dotenv` 
+
+```spoiler-env
+
+TEST=TEST
+TEST2=%TEST%
+DOUBLE_LINE=`This is the first line
+This is the second line`
+```

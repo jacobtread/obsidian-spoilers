@@ -40,3 +40,17 @@
 .spoiler-button {
 	cursor: pointer;
 }
+
+.spoiler-table {
+	width: 100%;
+}
+
+.spoiler-table-copy {
+	float: right;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.spoiler-table-cell:hover .spoiler-table-copy {
+	opacity: 1;
+}

@@ -1,4 +1,5 @@
 import { Plugin, MarkdownRenderer, ButtonComponent, Component } from "obsidian";
+import { parse as parseEnv } from "dotenv";
 
 export default class Spoilers extends Plugin {
 	async onload() {
@@ -71,6 +72,52 @@ export default class Spoilers extends Plugin {
 					ctx.sourcePath,
 					component
 				);
+			}
+		);
+
+		// Env variable spoilers
+		this.registerMarkdownCodeBlockProcessor(
+			"spoiler-env",
+			(source, el, ctx) => {
+				// Container for the spoiler
+				const container = createSpoilerContainer(el, source);
+
+				const env = parseEnv(source);
+
+				const table = container.createEl("table", {
+					cls: "spoiler-table",
+				});
+				const body = table.createEl("tbody");
+
+				for (const [key, value] of Object.entries(env)) {
+					const row = body.createEl("tr");
+					const keyColumn = row.createEl("td", {
+						text: key,
+						cls: "spoiler-table-cell",
+					});
+					const valueColumn = row.createEl("td", {
+						text: value,
+						cls: "spoiler-table-cell",
+					});
+
+					// Key copy button
+					new ButtonComponent(keyColumn)
+						.setIcon("copy")
+						.setClass("spoiler-table-copy")
+						.setTooltip("Copy key")
+						.onClick(function () {
+							navigator.clipboard.writeText(key);
+						});
+
+					// Value copy button
+					new ButtonComponent(valueColumn)
+						.setIcon("copy")
+						.setClass("spoiler-table-copy")
+						.setTooltip("Copy value")
+						.onClick(function () {
+							navigator.clipboard.writeText(value);
+						});
+				}
 			}
 		);
 	}
