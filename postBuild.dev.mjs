@@ -8,3 +8,4 @@ const pluginDir = "test-vault/.obsidian/plugins/spoiler-block-obsidian";
 await files.copyFile("src/styles.css", "build/styles.css");
 await files.copyFile("build/styles.css", path.resolve(pluginDir, "styles.css"));
 await files.copyFile("build/main.js", path.resolve(pluginDir, "main.js"));
+await files.copyFile("manifest.json", path.resolve(pluginDir, "manifest.json"));
