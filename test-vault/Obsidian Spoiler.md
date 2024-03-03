@@ -30,7 +30,9 @@ Store environment variables as table with `spoiler-env` parsed and evaluated by 
 ```spoiler-env
 
 TEST=TEST
-TEST2=%TEST%
+
 DOUBLE_LINE=`This is the first line
 This is the second line`
 ```
+
+
