@@ -2,6 +2,8 @@
 
 > Obsidian plugin for creating hidable blocks of content
 
+Quickly and easily hide content in your Obsidian documents.
+
 ## Spoiler blocks
 
 Initially spoiler blocks will appear like the following:
@@ -10,6 +12,7 @@ Initially spoiler blocks will appear like the following:
 
 The first button will show/hide the content and the second button will copy the text to your clipboard
 
+Below are the different kinds of spoiler blocks that are available
 
 ## 📄 Plain text blocks
 
