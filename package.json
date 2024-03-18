@@ -4,10 +4,11 @@
 	"description": "Hide and reveal blocks of information in Obsidian",
 	"main": "build/main.js",
 	"scripts": {
-		"dev": "node esbuild.config.mjs",
-		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production && node postBuild.mjs",
-		"build:dev": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production && node postBuild.dev.mjs",
-		"version": "node version-bump.mjs && git add manifest.json versions.json"
+		"dev": "obsidian-plugin dev --esbuild-config=esbuild.config.js --vault-path=test-vault --with-stylesheet src/styles.css src/main.ts",
+		"build": "obsidian-plugin build --esbuild-config=esbuild.config.js --with-stylesheet src/styles.css src/main.ts",
+		"version": "node version-bump.mjs && git add manifest.json versions.json",
+		"lint": "eslint src",
+		"format": "prettier -w src"
 	},
 	"keywords": [
 		"Obsidian"
@@ -21,7 +22,9 @@
 		"builtin-modules": "3.3.0",
 		"esbuild": "0.17.3",
 		"eslint": "^8.57.0",
+		"eslint-config-prettier": "^9.1.0",
 		"obsidian": "latest",
+		"obsidian-plugin-cli": "^0.9.0",
 		"prettier": "^3.2.5",
 		"tslib": "2.4.0",
 		"typescript": "4.7.4"

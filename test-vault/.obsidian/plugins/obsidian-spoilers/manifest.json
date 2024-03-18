@@ -1,0 +1,11 @@
+{
+	"id": "obsidian-spoilers",
+	"name": "Obsidian Spoilers",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Hide and reveal blocks of information",
+	"author": "Jacobtread",
+	"authorUrl": "https://github.com/Jacobtread",
+	"fundingUrl": "https://github.com/sponsors/jacobtread",
+	"isDesktopOnly": false
+}
