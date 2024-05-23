@@ -6,9 +6,18 @@ import {
 	Editor,
 } from "obsidian";
 import { parse as parseEnv } from "dotenv";
+import { SpoilerSettings, defaultSettings } from "./settings";
+import { SpoilersSettingsTab } from "./settings-tab";
 
-export default class Spoilers extends Plugin {
+export default class SpoilersPlugin extends Plugin {
+	settings: SpoilerSettings;
+
 	async onload() {
+		await this.loadSettings();
+
+		this.addSettingTab(new SpoilersSettingsTab(this.app, this));
+
+
 		// Add spoiler creation commands
 		this.addCommand({
 			id: "spoiler-plain-text",
@@ -50,6 +59,10 @@ export default class Spoilers extends Plugin {
 			const spoilerCover = container.createEl("div", {
 				cls: "spoiler__cover",
 			});
+
+			if (this.settings.showOnExport) {
+				spoilerCover.addClass("spoiler__cover--export__reveal");
+			}
 
 			// Create the "Content hidden" message
 			spoilerCover.createEl("p", {
@@ -157,5 +170,18 @@ export default class Spoilers extends Plugin {
 				}
 			}
 		);
+	}	
+
+	
+	async loadSettings(): Promise<void> {
+		this.settings = Object.assign(
+			{},
+			defaultSettings,
+			await this.loadData()
+		);
+	}
+
+	async saveSettings(): Promise<void> {
+		await this.saveData(this.settings);
 	}
 }
