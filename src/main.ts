@@ -17,7 +17,6 @@ export default class SpoilersPlugin extends Plugin {
 
 		this.addSettingTab(new SpoilersSettingsTab(this.app, this));
 
-
 		// Add spoiler creation commands
 		this.addCommand({
 			id: "spoiler-plain-text",
