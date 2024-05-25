@@ -11,7 +11,6 @@ export class SpoilersSettingsTab extends PluginSettingTab {
 
 	display(): void {
 		this.containerEl.empty();
-		this.containerEl.createEl("h2", { text: "Settings" });
 
 		new Setting(this.containerEl)
 			.setName("Show in export")

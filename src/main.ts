@@ -20,7 +20,7 @@ export default class SpoilersPlugin extends Plugin {
 		// Add spoiler creation commands
 		this.addCommand({
 			id: "spoiler-plain-text",
-			name: "Create spoiler - Plain Text",
+			name: "Create spoiler - Plain text",
 			editorCallback: (editor: Editor) => {
 				editor.replaceRange("```spoiler\n\n```", editor.getCursor());
 			},
