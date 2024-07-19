@@ -69,7 +69,7 @@ export default class SpoilersPlugin extends Plugin {
 			});
 
 			// Button toolbar
-			const toolbar = el.createEl("div", {
+			const toolbar = container.createEl("div", {
 				cls: "spoiler-toolbar",
 			});
 
@@ -78,7 +78,8 @@ export default class SpoilersPlugin extends Plugin {
 				.setIcon("eye")
 				.setClass("spoiler-button")
 				.setTooltip("Click to reveal")
-				.onClick(function () {
+				.onClick(function (event) {
+					event.stopPropagation();
 					spoilerCover.toggleAttribute("data-visible");
 				});
 
@@ -87,7 +88,8 @@ export default class SpoilersPlugin extends Plugin {
 				.setIcon("copy")
 				.setClass("spoiler-button")
 				.setTooltip("Copy to clipboard")
-				.onClick(function () {
+				.onClick(function (event) {
+					event.stopPropagation();
 					navigator.clipboard.writeText(copyText);
 				});
 

@@ -23,21 +23,13 @@
 	opacity: 1;
 }
 
+.callout-content .spoiler__cover {
+	background-color: black;
+}
+
 .spoiler__cover[data-visible] {
 	opacity: 0;
 	pointer-events: none;
-}
-
-@media print {
-	.spoiler__cover {
-		background-color: rgba(0, 0, 0, 1);
-		color: white;
-	}
-
-	.spoiler__cover--export__reveal {
-		opacity: 0;
-		pointer-events: none;
-	}
 }
 
 .spoiler-toolbar {
@@ -65,4 +57,20 @@
 
 .spoiler-table-cell:hover .spoiler-table-copy {
 	opacity: 1;
+}
+
+@media print {
+	.spoiler__cover {
+		background-color: rgba(0, 0, 0, 1);
+		color: white;
+	}
+
+	.spoiler__cover--export__reveal {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.spoiler-toolbar {
+		display: none;
+	}
 }
