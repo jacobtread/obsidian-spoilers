@@ -20,6 +20,10 @@ Using `spoiler-markdown` you can include markdown in your spoiler that will be r
 Markdown works within the code block. However, you cannot use nested code blocks
 
 [github.com](https://github.com)
+
+- List item
+
+> Woah
 ```
 
 
