@@ -48,12 +48,10 @@ export default class SpoilersPlugin extends Plugin {
 			},
 		});
 
-		const createSpoilerContainer = (el: HTMLElement, copyText: string) => {
-			// Container for the spoiler
-			const container = el.createEl("div", {
-				cls: "spoiler",
-			});
-
+		const createSpoilerCover = (
+			container: HTMLDivElement,
+			copyText: string
+		) => {
 			// Element to cover the content when hidden
 			const spoilerCover = container.createEl("div", {
 				cls: "spoiler__cover",
@@ -92,6 +90,13 @@ export default class SpoilersPlugin extends Plugin {
 					event.stopPropagation();
 					navigator.clipboard.writeText(copyText);
 				});
+		};
+
+		const createSpoilerContainer = (el: HTMLElement) => {
+			// Container for the spoiler
+			const container = el.createEl("div", {
+				cls: "spoiler",
+			});
 
 			return container;
 		};
@@ -99,12 +104,14 @@ export default class SpoilersPlugin extends Plugin {
 		// Plain text spoilers
 		this.registerMarkdownCodeBlockProcessor("spoiler", (source, el) => {
 			// Container for the spoiler
-			const container = createSpoilerContainer(el, source);
+			const container = createSpoilerContainer(el);
 
 			// Render the lines as children of the container
 			source
 				.split("\n")
 				.forEach((line) => container.createEl("div", { text: line }));
+
+			createSpoilerCover(container, source);
 		});
 
 		// Markdown spoilers
@@ -112,7 +119,7 @@ export default class SpoilersPlugin extends Plugin {
 			"spoiler-markdown",
 			(source, el, ctx) => {
 				// Container for the spoiler
-				const container = createSpoilerContainer(el, source);
+				const container = createSpoilerContainer(el);
 
 				// Render the inner contents of the spoiler
 				const component = new Component();
@@ -123,57 +130,57 @@ export default class SpoilersPlugin extends Plugin {
 					ctx.sourcePath,
 					component
 				);
+
+				createSpoilerCover(container, source);
 			}
 		);
 
 		// Env variable spoilers
-		this.registerMarkdownCodeBlockProcessor(
-			"spoiler-env",
-			(source, el, ctx) => {
-				// Container for the spoiler
-				const container = createSpoilerContainer(el, source);
+		this.registerMarkdownCodeBlockProcessor("spoiler-env", (source, el) => {
+			// Container for the spoiler
+			const container = createSpoilerContainer(el);
 
-				const env = parseEnv(source);
+			const env = parseEnv(source);
 
-				const table = container.createEl("table", {
-					cls: "spoiler-table",
+			const table = container.createEl("table", {
+				cls: "spoiler-table",
+			});
+			const body = table.createEl("tbody");
+
+			for (const [key, value] of Object.entries(env)) {
+				const row = body.createEl("tr");
+				const keyColumn = row.createEl("td", {
+					text: key,
+					cls: "spoiler-table-cell",
 				});
-				const body = table.createEl("tbody");
+				const valueColumn = row.createEl("td", {
+					text: value,
+					cls: "spoiler-table-cell",
+				});
 
-				for (const [key, value] of Object.entries(env)) {
-					const row = body.createEl("tr");
-					const keyColumn = row.createEl("td", {
-						text: key,
-						cls: "spoiler-table-cell",
+				// Key copy button
+				new ButtonComponent(keyColumn)
+					.setIcon("copy")
+					.setClass("spoiler-table-copy")
+					.setTooltip("Copy key")
+					.onClick(function () {
+						navigator.clipboard.writeText(key);
 					});
-					const valueColumn = row.createEl("td", {
-						text: value,
-						cls: "spoiler-table-cell",
+
+				// Value copy button
+				new ButtonComponent(valueColumn)
+					.setIcon("copy")
+					.setClass("spoiler-table-copy")
+					.setTooltip("Copy value")
+					.onClick(function () {
+						navigator.clipboard.writeText(value);
 					});
-
-					// Key copy button
-					new ButtonComponent(keyColumn)
-						.setIcon("copy")
-						.setClass("spoiler-table-copy")
-						.setTooltip("Copy key")
-						.onClick(function () {
-							navigator.clipboard.writeText(key);
-						});
-
-					// Value copy button
-					new ButtonComponent(valueColumn)
-						.setIcon("copy")
-						.setClass("spoiler-table-copy")
-						.setTooltip("Copy value")
-						.onClick(function () {
-							navigator.clipboard.writeText(value);
-						});
-				}
 			}
-		);
-	}	
 
-	
+			createSpoilerCover(container, source);
+		});
+	}
+
 	async loadSettings(): Promise<void> {
 		this.settings = Object.assign(
 			{},
