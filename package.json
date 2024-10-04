@@ -1,6 +1,6 @@
 {
 	"name": "spoilers",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Hide and reveal blocks of information in Obsidian",
 	"main": "build/main.js",
 	"scripts": {
