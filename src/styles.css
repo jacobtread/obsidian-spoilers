@@ -23,6 +23,10 @@
 	opacity: 1;
 }
 
+.spoiler:not([data-spoiler-visible]) > * {
+	mix-blend-mode: normal;
+}
+
 .callout-content .spoiler__cover {
 	background-color: black;
 }
