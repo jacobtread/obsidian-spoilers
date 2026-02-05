@@ -24,6 +24,5 @@ export class SpoilersSettingsTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				});
 			});
-
 	}
 }

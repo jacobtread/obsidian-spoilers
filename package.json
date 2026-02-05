@@ -1,35 +1,35 @@
 {
-	"name": "spoilers",
-	"version": "1.0.4",
-	"description": "Hide and reveal blocks of information in Obsidian",
-	"main": "build/main.js",
-	"scripts": {
-		"dev": "obsidian-plugin dev --esbuild-config=esbuild.config.js --vault-path=test-vault --with-stylesheet src/styles.css src/main.ts",
-		"build": "obsidian-plugin build --esbuild-config=esbuild.config.js --with-stylesheet src/styles.css src/main.ts",
-		"version": "node version-bump.mjs && git add manifest.json versions.json",
-		"lint": "eslint src",
-		"format": "prettier -w src"
-	},
-	"keywords": [
-		"Obsidian"
-	],
-	"author": "Jacobtread",
-	"license": "MIT",
-	"devDependencies": {
-		"@types/node": "^16.11.6",
-		"@typescript-eslint/eslint-plugin": "5.29.0",
-		"@typescript-eslint/parser": "5.29.0",
-		"builtin-modules": "3.3.0",
-		"esbuild": "0.17.3",
-		"eslint": "^8.57.0",
-		"eslint-config-prettier": "^9.1.0",
-		"obsidian": "latest",
-		"obsidian-plugin-cli": "^0.9.0",
-		"prettier": "^3.2.5",
-		"tslib": "2.4.0",
-		"typescript": "4.7.4"
-	},
-	"dependencies": {
-		"dotenv": "^16.4.5"
-	}
+    "name": "spoilers",
+    "version": "1.0.4",
+    "description": "Hide and reveal blocks of information in Obsidian",
+    "main": "build/main.js",
+    "scripts": {
+        "dev": "node scripts/dev.js",
+        "build": "node scripts/build.js",
+        "version": "node version-bump.mjs && git add manifest.json versions.json",
+        "lint": "eslint src",
+        "format": "prettier -w src"
+    },
+    "keywords": [
+        "Obsidian"
+    ],
+    "author": "Jacobtread",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^16.11.6",
+        "@typescript-eslint/eslint-plugin": "5.29.0",
+        "@typescript-eslint/parser": "5.29.0",
+        "builtin-modules": "3.3.0",
+        "chokidar": "^4.0.3",
+        "esbuild": "^0.25.6",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
+        "obsidian": "latest",
+        "prettier": "^3.2.5",
+        "tslib": "2.4.0",
+        "typescript": "4.7.4"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.5"
+    }
 }
