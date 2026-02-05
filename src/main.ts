@@ -79,6 +79,7 @@ export default class SpoilersPlugin extends Plugin {
 				.onClick(function (event) {
 					event.stopPropagation();
 					spoilerCover.toggleAttribute("data-visible");
+					container.toggleAttribute("data-spoiler-visible");
 				});
 
 			// Create copy button
